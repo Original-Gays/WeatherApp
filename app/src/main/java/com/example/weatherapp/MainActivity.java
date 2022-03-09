@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -15,9 +13,6 @@ import com.example.weatherapp.weather.CurrentWeatherGetter;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class MainActivity extends AppCompatActivity {
-
-    /*private EditText enteredData;
-    private TextView dataPlace;*/
 
     private RelativeLayout RLHome;
     private ImageView IVBack, IVSearchIcon, IVConditionIcon;
@@ -48,15 +43,9 @@ public class MainActivity extends AppCompatActivity {
                 getWeather(view);
             }
         });
-
-        /*enteredData = findViewById(R.id.gettingData);
-        dataPlace = findViewById(R.id.data_place);*/
-
     }
 
     public void getWeather(View view) {
-        /*CurrentWeatherGetter.getCurrentWeatherMetric(EDTCity.getText().toString(), TVCityName);
-        EDTCity.setText("");*/
         CurrentWeatherGetter.getCurrentWeatherMetric(EDTCity.getText().toString(), TVTemperature, TVCondition, TVCityName, IVConditionIcon, IVBack);
         EDTCity.setText("");
     }

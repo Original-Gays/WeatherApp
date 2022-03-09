@@ -1,13 +1,8 @@
 package com.example.weatherapp.weather;
 
-import android.graphics.Bitmap;
-import android.os.AsyncTask;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.example.weatherapp.R;
 import com.squareup.picasso.Picasso;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -53,14 +48,6 @@ public class CurrentWeatherGetter {
                 {
                     Picasso.get().load("https://images.unsplash.com/photo-1454177697940-c43d9f9a7307?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80").into(Background);
                 }
-
-                /*String res = location.getName() + ", " + location.getRegion() + ", " + location.getCountry() + "\n" +
-                             location.getLocaltime() + "\n" +
-                             "Temperature: " + current.getTemp_c() + ", " +
-                             current.getCondition().getText() + "\n" +
-                             "Feels like: " + current.getFeelslike_c() + "\n" +
-                             "Wind: " + current.getWind_kph();
-                dataPlace.setText(res);*/
             }
 
             @Override
@@ -71,6 +58,6 @@ public class CurrentWeatherGetter {
     }
 
     public static String getCurrentWeatherGaySystem(String city) {
-        return "sada";
+        return "Темыч лизни мои яйца";
     }
 }
