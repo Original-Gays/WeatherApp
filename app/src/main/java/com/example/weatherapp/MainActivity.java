@@ -2,17 +2,23 @@ package com.example.weatherapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Button;
 
-import com.example.weatherapp.weather.CurrentWeatherGetter;
+import com.example.weatherapp.weather.CurrentWeather;
+import com.example.weatherapp.weather.WeatherGetter;
+import com.example.weatherapp.weather.WeatherMaster;
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText enteredData;
     private TextView dataPlace;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +29,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getWeather(View view) {
-        CurrentWeatherGetter.getCurrentWeatherMetric(enteredData.getText().toString(), dataPlace);
-        enteredData.setText("");
+        WeatherMaster.setCurrentWeather(enteredData.getText().toString(), dataPlace);
+    }
+
+    public void updateWeather() {
+
     }
 }

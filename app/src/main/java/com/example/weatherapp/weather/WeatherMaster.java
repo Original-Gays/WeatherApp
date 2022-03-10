@@ -8,10 +8,10 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class CurrentWeatherGetter {
+public class WeatherMaster {
     private static String API = "248a249476cd458ab38140300221902";
 
-    private static Call<CurrentWeather> Parse(String city) {
+    private static Call<CurrentWeather> getCurrentWeather(String city) {
         Retrofit retrofit = new Retrofit.Builder().
                 baseUrl("https://api.weatherapi.com/").
                 addConverterFactory(GsonConverterFactory.create()).
@@ -19,11 +19,13 @@ public class CurrentWeatherGetter {
 
         CurrentWeatherAPI currentWeatherAPI = retrofit.create(CurrentWeatherAPI.class);
 
-        return currentWeatherAPI.getCurrentWeather(CurrentWeatherGetter.API, city);
+        return currentWeatherAPI.getCurrentWeather(WeatherMaster.API, city);
     }
 
-    public static void getCurrentWeatherMetric(String city, TextView dataPlace) {
-        Call<CurrentWeather> call = Parse(city);
+
+    // city & place where you should put the data
+    public static void setCurrentWeather(String city, TextView where) {
+        Call<CurrentWeather> call = getCurrentWeather(city);
         call.enqueue(new Callback<CurrentWeather>() {
             @Override
             public void onResponse(Call<CurrentWeather> call, Response<CurrentWeather> response) {
@@ -31,6 +33,8 @@ public class CurrentWeatherGetter {
                     return;
                 }
                 CurrentWeather currentWeather = response.body();
+                // putting data
+                // change this fckn code from this -->
                 Location location = currentWeather.getLocation();
                 Current current = currentWeather.getCurrent();
                 String res = location.getName() + ", " + location.getRegion() + ", " + location.getCountry() + "\n" +
@@ -39,7 +43,8 @@ public class CurrentWeatherGetter {
                              current.getCondition().getText() + "\n" +
                              "Feels like: " + current.getFeelslike_c() + "\n" +
                              "Wind: " + current.getWind_kph();
-                dataPlace.setText(res);
+                where.setText(res);
+                // <-- to this
             }
 
             @Override
@@ -47,9 +52,5 @@ public class CurrentWeatherGetter {
                 return;
             }
         });
-    }
-
-    public static String getCurrentWeatherGaySystem(String city) {
-        return "sada";
     }
 }
