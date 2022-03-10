@@ -11,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Button;
 
 import com.example.weatherapp.weather.CurrentWeather;
-import com.example.weatherapp.weather.WeatherGetter;
 import com.example.weatherapp.weather.WeatherMaster;
 
 public class MainActivity extends AppCompatActivity {
