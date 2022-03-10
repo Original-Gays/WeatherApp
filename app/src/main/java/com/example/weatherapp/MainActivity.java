@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getWeather(View view) {
-        WeatherMaster.setCurrentWeather(enteredData.getText().toString(), dataPlace);
+        //WeatherMaster.setCurrentWeather(enteredData.getText().toString(), dataPlace);
+        WeatherMaster.setForecastWeather(enteredData.getText().toString(), 3, dataPlace);
     }
 
     public void updateWeather() {
