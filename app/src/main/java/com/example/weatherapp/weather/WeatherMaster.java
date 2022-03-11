@@ -1,12 +1,15 @@
 package com.example.weatherapp.weather;
 
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-
+import com.squareup.picasso.Picasso;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import design.ImageHandler;
 
 public class WeatherMaster {
     private static String API = "248a249476cd458ab38140300221902";
@@ -35,7 +38,7 @@ public class WeatherMaster {
 
 
     // city & place where you should put the data
-    public static void setCurrentWeather(String city, TextView where) {
+    public static void setCurrentWeather(String city, TextView currentTemp, TextView currentCond, RelativeLayout layoutBG, ImageView curConditionimage, TextView feelsLike,TextView windSpeed, TextView curPressure) {
         Call<CurrentWeather> call = getCurrentWeather(city);
         call.enqueue(new Callback<CurrentWeather>() {
             @Override
@@ -44,12 +47,8 @@ public class WeatherMaster {
                     return;
                 }
                 CurrentWeather currentWeather = response.body();
-
-                // change this fckn code from this -->
-                WeatherMaster.testCurrentWeather(currentWeather, where);
-                // <-- to this \\ instead of tests put ur code
+                WeatherMaster.currentWeather(currentWeather, currentTemp, currentCond, layoutBG, curConditionimage, feelsLike, windSpeed, curPressure);
             }
-
             @Override
             public void onFailure(Call<CurrentWeather> call, Throwable t) {
                 return;
@@ -66,9 +65,8 @@ public class WeatherMaster {
                     return;
                 }
                 ForecastWeather forecastWeather = response.body();
-
                 // change this fckn code from this -->
-                WeatherMaster.testForecastWeather(forecastWeather, where);
+                //WeatherMaster.testForecastWeather(forecastWeather, where);
                 // <-- to this \\ instead of tests put ur code
             }
 
@@ -79,7 +77,22 @@ public class WeatherMaster {
         });
     }
 
-    // Tests
+    public static void currentWeather(CurrentWeather currentWeather, TextView curTemp, TextView curCond, RelativeLayout bg, ImageView condIV, TextView feelsLike, TextView windSpeed, TextView curPressure)
+    {
+
+        Location location = currentWeather.getLocation();
+        Current current = currentWeather.getCurrent();
+
+        int is_day = current.isIs_day();
+        int condition_code = current.getCondition().getCode();
+        ImageHandler.setBackGround(condition_code, bg, is_day);
+        curTemp.setText(current.getTemp_c() + "℃");
+        curPressure.setText(current.getPressure_mb() + " Mb");
+        curCond.setText(current.getCondition().getText());
+        windSpeed.setText(current.getWind_kph()+ " Kp/h");
+        feelsLike.setText("Feels like " + current.getFeelslike_c() +"℃");
+        Picasso.get().load("https:"+current.getCondition().getIcon()).into(condIV);
+    }
 
     public static void testCurrentWeather(CurrentWeather currentWeather, TextView where) {
         Location location = currentWeather.getLocation();
