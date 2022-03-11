@@ -3,13 +3,13 @@ package com.example.weatherapp.weather;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.squareup.picasso.Picasso;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import design.ImageHandler;
+
 
 public class WeatherMaster {
     private static String API = "248a249476cd458ab38140300221902";
@@ -36,8 +36,6 @@ public class WeatherMaster {
         return forecastWeatherAPI.getForecastWeather(WeatherMaster.API, city, days);
     }
 
-
-    // city & place where you should put the data
     public static void setCurrentWeather(String city, TextView currentTemp, TextView currentCond, RelativeLayout layoutBG, ImageView curConditionimage, TextView feelsLike,TextView windSpeed, TextView curPressure) {
         Call<CurrentWeather> call = getCurrentWeather(city);
         call.enqueue(new Callback<CurrentWeather>() {
@@ -56,7 +54,7 @@ public class WeatherMaster {
         });
     }
 
-    public static void setForecastWeather(String city, int days, TextView where) {
+    public static void setForecastWeather(String city, int days, TextView Title, TextView Condition, TextView Temperature, TextView MinTemp, TextView MaxTemp, TextView WindSpeed, TextView ChanceOfRain, ImageView IconCondition) {
         Call<ForecastWeather> call = getForecastWeather(city, days);
         call.enqueue(new Callback<ForecastWeather>() {
             @Override
@@ -65,9 +63,7 @@ public class WeatherMaster {
                     return;
                 }
                 ForecastWeather forecastWeather = response.body();
-                // change this fckn code from this -->
-                //WeatherMaster.testForecastWeather(forecastWeather, where);
-                // <-- to this \\ instead of tests put ur code
+                WeatherMaster.forecastWeather(forecastWeather, Title, Condition, Temperature, MinTemp, MaxTemp, WindSpeed, ChanceOfRain, IconCondition);
             }
 
             @Override
@@ -75,6 +71,11 @@ public class WeatherMaster {
                 return;
             }
         });
+    }
+
+    public static void forecastWeather(ForecastWeather forecastWeather, TextView title, TextView condition, TextView temperature, TextView mintemp, TextView maxtemp, TextView windspeed, TextView chanceofrain, ImageView icon)
+    {
+        // block parser
     }
 
     public static void currentWeather(CurrentWeather currentWeather, TextView curTemp, TextView curCond, RelativeLayout bg, ImageView condIV, TextView feelsLike, TextView windSpeed, TextView curPressure)
@@ -85,13 +86,12 @@ public class WeatherMaster {
 
         int is_day = current.isIs_day();
         int condition_code = current.getCondition().getCode();
-        ImageHandler.setBackGround(condition_code, bg, is_day);
+        ImageHandler.setBackGround(condition_code, bg, is_day, condIV);
         curTemp.setText(current.getTemp_c() + "℃");
         curPressure.setText(current.getPressure_mb() + " Mb");
         curCond.setText(current.getCondition().getText());
         windSpeed.setText(current.getWind_kph()+ " Kp/h");
         feelsLike.setText("Feels like " + current.getFeelslike_c() +"℃");
-        Picasso.get().load("https:"+current.getCondition().getIcon()).into(condIV);
     }
 
     public static void testCurrentWeather(CurrentWeather currentWeather, TextView where) {
@@ -110,7 +110,7 @@ public class WeatherMaster {
         Forecast forecast = forecastWeather.getForecast();
         String res = "";
         for (Day day: forecast.getForecastday()) {
-            res += day.getDate() + "\n";
+            res += day.getDay().getAvgtemp_c() + "\n";
         }
         where.setText(res);
     }

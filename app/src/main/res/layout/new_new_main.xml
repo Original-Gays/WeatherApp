@@ -45,13 +45,12 @@
                             android:inputType="text"
                             android:singleLine="true"
                             android:background="@android:color/transparent"
-                            android:textSize="35sp"
+                            android:textSize="30sp"
                             android:gravity="center"
-                            android:textStyle="bold"
                             android:textColor="@color/white"
                             tools:ignore="TouchTargetSizeCheck"
-                            android:fontFamily="@font/nunito_bold"
-                            app:fontFamily="@font/nunito_bold"/>
+                            android:fontFamily="@font/nunito"
+                            app:fontFamily="@font/nunito"/>
 
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -78,6 +77,7 @@
                         android:fontFamily="@font/nunito"
                         android:gravity="center"
                         android:text="23"
+                        android:layout_marginTop="20dp"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="60sp"
@@ -109,33 +109,35 @@
                         android:id="@+id/idIVConditionIconN"
                         android:layout_width="90dp"
                         android:layout_height="90dp"
-                        android:layout_toRightOf="@+id/idTVCurTemp"
-                        android:layout_marginLeft="55dp"
-                        android:src="@drawable/cloudy"/>
+                        android:layout_toEndOf="@+id/idTVCurTemp"
+                        android:layout_marginStart="55dp"
+                        android:layout_marginTop="5dp"
+                        android:outlineSpotShadowColor="@color/black" />
 
                     <ImageView
                         android:id="@+id/idIVWindIcon"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_below="@+id/idIVConditionIconN"
-                        android:layout_marginLeft="6dp"
-                        android:layout_marginTop="6dp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="11dp"
                         android:layout_toEndOf="@+id/idTVCondition"
                         android:src="@drawable/wind"
                         app:tint="@color/white" />
+
                     <TextView
                         android:id="@+id/idTVWindSpeed"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:layout_toEndOf="@+id/idIVWindIcon"
                         android:layout_below="@id/idIVConditionIconN"
-                        android:layout_marginTop="7dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/idIVWindIcon"
+                        android:fontFamily="@font/nunito_bold"
                         android:text="5.2 Km/h"
                         android:textAlignment="center"
-                        android:fontFamily="@font/nunito_bold"
-                        app:fontFamily="@font/nunito_bold"
                         android:textColor="@color/white"
-                        android:textSize="17sp"/>
+                        android:textSize="17sp"
+                        app:fontFamily="@font/nunito_bold" />
 
                     <ImageView
                         android:layout_width="25dp"
@@ -143,49 +145,43 @@
                         android:id="@+id/idIVPressureIcon"
                         android:layout_below="@+id/idIVWindIcon"
                         android:layout_toEndOf="@id/idTVCondition"
-                        android:layout_marginStart="6dp"
+                        android:layout_marginStart="25dp"
                         android:layout_marginTop="6dp"
                         android:src="@drawable/pressure_icon"
                         app:tint="@color/white"/>
+
                     <TextView
+                        android:id="@+id/idTVPressure"
                         android:layout_width="100dp"
                         android:layout_height="25dp"
-                        android:id="@+id/idTVPressure"
-                        android:layout_toEndOf="@id/idIVPressureIcon"
                         android:layout_below="@id/idTVWindSpeed"
-                        android:layout_marginTop="7dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@id/idIVPressureIcon"
+                        android:fontFamily="@font/nunito_bold"
                         android:gravity="center"
                         android:text="1233 Mb"
                         android:textAlignment="center"
-                        android:fontFamily="@font/nunito_bold"
-                        app:fontFamily ="@font/nunito_bold"
                         android:textColor="@color/white"
-                        android:textSize="17sp"/>
+                        android:textSize="17sp"
+                        app:fontFamily="@font/nunito_bold" />
                 </RelativeLayout>
-
-
-
-
-
-
-
-
 
                 <TextView
                     android:id="@+id/idTenDForecast"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_below="@+id/idRLToday"
-                    android:text="10 Days Forecast"
+                    android:text="Forecast"
                     android:textColor="@color/white"
                     android:background="@android:color/transparent"
                     android:textAlignment="center"
                     android:layout_marginTop="15dp"
                     android:textSize="40sp"
-                    android:fontFamily="@font/nunito"
-                    app:fontFamily="@font/nunito"/>
-                <LinearLayout
-                    android:id="@+id/idLLFirst"
+                    android:fontFamily="@font/nunito_bold"
+                    app:fontFamily="@font/nunito_bold"/>
+
+                <RelativeLayout
+                    android:id="@+id/idRLFirst"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:layout_below="@+id/idTenDForecast"
@@ -195,136 +191,1336 @@
                     android:background="@drawable/rectangle_block"
                     >
                     <TextView
+                        android:id="@+id/idTVTomorrowTitle"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="wrap_content"
+                        android:text="Tomorrow, %date"
+                        android:layout_marginTop="5dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        android:fontFamily="@font/nunito"/>
+                    <ImageView
+                        android:id="@+id/idIVTomorrowCondition"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:layout_below="@id/idTVTomorrowTitle"
+                        android:layout_marginLeft="15dp"/>
+                    <TextView
+                        android:id="@+id/idTVTomorrowCondition"
+                        android:layout_width="85dp"
+                        android:layout_height="25dp"
+                        android:layout_below="@id/idIVTomorrowCondition"
+                        android:text="Condition"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="8dp"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/nunito"
+                        app:fontFamily="@font/nunito"
+                        />
 
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/idLLSecond"
+                    <TextView
+                        android:id="@+id/idTV1BlockTemperature"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/idTVTomorrowTitle"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginTop="-1dp"
+                        android:layout_toEndOf="@id/idIVTomorrowCondition"
+                        android:gravity="center"
+                        android:text="23"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="35sp"
+                        android:fontFamily="@font/nunito"
+                        app:fontFamily="@font/nunito"/>
+
+                    <TextView
+                        android:id="@+id/idTV1BlockMinTemp"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/idTV1BlockTemperature"
+                        android:layout_centerInParent="true"
+                        android:text="min: 17"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/nunito_bold"
+                        app:fontFamily="@font/nunito_bold"/>
+
+                    <TextView
+                        android:id="@+id/idTV1BlockMaxTemp"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/idTV1BlockMinTemp"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/nunito_bold"
+                        android:text="max: 25"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        app:fontFamily="@font/nunito_bold"/>
+
+                    <ImageView
+                        android:id="@+id/idIV1BlockWindImageIcon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idTVTomorrowTitle"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_toEndOf="@+id/idTV1BlockMaxTemp"
+                        android:src="@drawable/wind"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/idTV1BlockWindSpeed"
+                        android:layout_width="140dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idTVTomorrowTitle"
+                        android:layout_marginTop="25dp"
+                        android:layout_toEndOf="@+id/idIV1BlockWindImageIcon"
+                        android:fontFamily="@font/nunito_bold"
+                        app:fontFamily="@font/nunito_bold"
+                        android:text="500 Km/h"
+                        android:layout_marginLeft="-4dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"/>
+
+                    <ImageView
+                        android:id="@+id/idIV1BlockChanceImageIcon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idIV1BlockWindImageIcon"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/idTV1BlockMaxTemp"
+                        android:src="@drawable/water_white"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/idTV1BlockRainChance"
+                        android:layout_width="140dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idTV1BlockWindSpeed"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/idIV1BlockWindImageIcon"
+                        android:fontFamily="@font/nunito_bold"
+                        app:fontFamily="@font/nunito_bold"
+                        android:text="17%"
+                        android:layout_marginLeft="-4dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"/>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/idRLSecond"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:layout_below="@+id/idLLFirst"
+                    android:layout_below="@+id/idRLFirst"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:background="@drawable/rectangle_block"
                     >
                     <TextView
+                        android:id="@+id/idTV2BlockTitle"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/idLLThird"
+                        android:layout_height="wrap_content"
+                        android:text="Tomorrow, %date"
+                        android:layout_marginTop="5dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        android:fontFamily="@font/nunito"/>
+                    <ImageView
+                        android:id="@+id/idIV2BlockCondition"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:layout_below="@id/idTV2BlockTitle"
+                        android:layout_marginLeft="15dp"/>
+                    <TextView
+                        android:id="@+id/idTV2BlockCondition"
+                        android:layout_width="85dp"
+                        android:layout_height="25dp"
+                        android:layout_below="@id/idIV2BlockCondition"
+                        android:text="Condition"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="8dp"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/nunito"
+                        app:fontFamily="@font/nunito"
+                        />
+
+                    <TextView
+                        android:id="@+id/idTV2BlockTemperature"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/idTV2BlockTitle"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginTop="-1dp"
+                        android:layout_toEndOf="@id/idIV2BlockCondition"
+                        android:gravity="center"
+                        android:text="23"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="35sp"
+                        android:fontFamily="@font/nunito"
+                        app:fontFamily="@font/nunito"/>
+
+                    <TextView
+                        android:id="@+id/idTV2BlockMinTemp"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/idTV2BlockTemperature"
+                        android:layout_centerInParent="true"
+                        android:text="min: 17"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/nunito_bold"
+                        app:fontFamily="@font/nunito_bold"/>
+
+                    <TextView
+                        android:id="@+id/idTV2BlockMaxTemp"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/idTV2BlockMinTemp"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/nunito_bold"
+                        android:text="max: 25"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        app:fontFamily="@font/nunito_bold"/>
+
+                    <ImageView
+                        android:id="@+id/idIV2BlockWindImageIcon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idTV2BlockTitle"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_toEndOf="@+id/idTV2BlockMaxTemp"
+                        android:src="@drawable/wind"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/idTV2BlockWindSpeed"
+                        android:layout_width="140dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idTV2BlockTitle"
+                        android:layout_marginTop="25dp"
+                        android:layout_toEndOf="@+id/idIV2BlockWindImageIcon"
+                        android:fontFamily="@font/nunito_bold"
+                        app:fontFamily="@font/nunito_bold"
+                        android:text="500 Km/h"
+                        android:layout_marginLeft="-4dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"/>
+
+                    <ImageView
+                        android:id="@+id/idIV2BlockChanceImageIcon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idIV2BlockWindImageIcon"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/idTV2BlockMaxTemp"
+                        android:src="@drawable/water_white"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/idTV2BlockRainChance"
+                        android:layout_width="140dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idTV2BlockWindSpeed"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/idIV2BlockWindImageIcon"
+                        android:fontFamily="@font/nunito_bold"
+                        app:fontFamily="@font/nunito_bold"
+                        android:text="17%"
+                        android:layout_marginLeft="-4dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/idRLThird"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:layout_below="@+id/idLLSecond"
+                    android:layout_below="@+id/idRLSecond"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:background="@drawable/rectangle_block"
                     >
                     <TextView
+                        android:id="@+id/idTV3BlockTitle"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/idLLFourth"
+                        android:layout_height="wrap_content"
+                        android:text="Tomorrow, %date"
+                        android:layout_marginTop="5dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        android:fontFamily="@font/nunito"/>
+                    <ImageView
+                        android:id="@+id/idIV3BlockCondition"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:layout_below="@id/idTV3BlockTitle"
+                        android:layout_marginLeft="15dp"/>
+                    <TextView
+                        android:id="@+id/idTV3BlockCondition"
+                        android:layout_width="85dp"
+                        android:layout_height="25dp"
+                        android:layout_below="@id/idIV3BlockCondition"
+                        android:text="Condition"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="8dp"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/nunito"
+                        app:fontFamily="@font/nunito"
+                        />
+
+                    <TextView
+                        android:id="@+id/idTV3BlockTemperature"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/idTV3BlockTitle"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginTop="-1dp"
+                        android:layout_toEndOf="@id/idIV3BlockCondition"
+                        android:gravity="center"
+                        android:text="23"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="35sp"
+                        android:fontFamily="@font/nunito"
+                        app:fontFamily="@font/nunito"/>
+
+                    <TextView
+                        android:id="@+id/idTV3BlockMinTemp"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/idTV3BlockTemperature"
+                        android:layout_centerInParent="true"
+                        android:text="min: 17"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/nunito_bold"
+                        app:fontFamily="@font/nunito_bold"/>
+
+                    <TextView
+                        android:id="@+id/idTV3BlockMaxTemp"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/idTV3BlockMinTemp"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/nunito_bold"
+                        android:text="max: 25"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        app:fontFamily="@font/nunito_bold"/>
+
+                    <ImageView
+                        android:id="@+id/idIV3BlockWindImageIcon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idTV3BlockTitle"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_toEndOf="@+id/idTV3BlockMaxTemp"
+                        android:src="@drawable/wind"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/idTV3BlockWindSpeed"
+                        android:layout_width="140dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idTV3BlockTitle"
+                        android:layout_marginTop="25dp"
+                        android:layout_toEndOf="@+id/idIV3BlockWindImageIcon"
+                        android:fontFamily="@font/nunito_bold"
+                        app:fontFamily="@font/nunito_bold"
+                        android:text="500 Km/h"
+                        android:layout_marginLeft="-4dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"/>
+
+                    <ImageView
+                        android:id="@+id/idIV3BlockChanceImageIcon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idIV3BlockWindImageIcon"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/idTV3BlockMaxTemp"
+                        android:src="@drawable/water_white"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/idTV3BlockRainChance"
+                        android:layout_width="140dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idTV3BlockWindSpeed"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/idIV3BlockWindImageIcon"
+                        android:fontFamily="@font/nunito_bold"
+                        app:fontFamily="@font/nunito_bold"
+                        android:text="17%"
+                        android:layout_marginLeft="-4dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/idRLFourth"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:layout_below="@+id/idLLThird"
+                    android:layout_below="@+id/idRLThird"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:background="@drawable/rectangle_block"
                     >
                     <TextView
+                        android:id="@+id/idTV4BlockTitle"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/idLLFifth"
+                        android:layout_height="wrap_content"
+                        android:text="Tomorrow, %date"
+                        android:layout_marginTop="5dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        android:fontFamily="@font/nunito"/>
+                    <ImageView
+                        android:id="@+id/idIV4BlockCondition"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:layout_below="@id/idTV4BlockTitle"
+                        android:layout_marginLeft="15dp"/>
+                    <TextView
+                        android:id="@+id/idTV4BlockCondition"
+                        android:layout_width="85dp"
+                        android:layout_height="25dp"
+                        android:layout_below="@id/idIV4BlockCondition"
+                        android:text="Condition"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="8dp"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/nunito"
+                        app:fontFamily="@font/nunito"
+                        />
+
+                    <TextView
+                        android:id="@+id/idTV4BlockTemperature"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/idTV4BlockTitle"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginTop="-1dp"
+                        android:layout_toEndOf="@id/idIV4BlockCondition"
+                        android:gravity="center"
+                        android:text="23"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="35sp"
+                        android:fontFamily="@font/nunito"
+                        app:fontFamily="@font/nunito"/>
+
+                    <TextView
+                        android:id="@+id/idTV4BlockMinTemp"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/idTV4BlockTemperature"
+                        android:layout_centerInParent="true"
+                        android:text="min: 17"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/nunito_bold"
+                        app:fontFamily="@font/nunito_bold"/>
+
+                    <TextView
+                        android:id="@+id/idTV4BlockMaxTemp"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/idTV4BlockMinTemp"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/nunito_bold"
+                        android:text="max: 25"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        app:fontFamily="@font/nunito_bold"/>
+
+                    <ImageView
+                        android:id="@+id/idIV4BlockWindImageIcon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idTV4BlockTitle"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_toEndOf="@+id/idTV4BlockMaxTemp"
+                        android:src="@drawable/wind"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/idTV4BlockWindSpeed"
+                        android:layout_width="140dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idTV4BlockTitle"
+                        android:layout_marginTop="25dp"
+                        android:layout_toEndOf="@+id/idIV4BlockWindImageIcon"
+                        android:fontFamily="@font/nunito_bold"
+                        app:fontFamily="@font/nunito_bold"
+                        android:text="500 Km/h"
+                        android:layout_marginLeft="-4dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"/>
+
+                    <ImageView
+                        android:id="@+id/idIV4BlockChanceImageIcon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idIV4BlockWindImageIcon"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/idTV4BlockMaxTemp"
+                        android:src="@drawable/water_white"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/idTV4BlockRainChance"
+                        android:layout_width="140dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idTV4BlockWindSpeed"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/idIV4BlockWindImageIcon"
+                        android:fontFamily="@font/nunito_bold"
+                        app:fontFamily="@font/nunito_bold"
+                        android:text="17%"
+                        android:layout_marginLeft="-4dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/idRLFifth"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:layout_below="@+id/idLLFourth"
+                    android:layout_below="@+id/idRLFourth"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:background="@drawable/rectangle_block"
                     >
                     <TextView
+                        android:id="@+id/idTV5BlockTitle"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/idLLSixth"
+                        android:layout_height="wrap_content"
+                        android:text="Tomorrow, %date"
+                        android:layout_marginTop="5dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        android:fontFamily="@font/nunito"/>
+                    <ImageView
+                        android:id="@+id/idIV5BlockCondition"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:layout_below="@id/idTV5BlockTitle"
+                        android:layout_marginLeft="15dp"/>
+                    <TextView
+                        android:id="@+id/idTV5BlockCondition"
+                        android:layout_width="85dp"
+                        android:layout_height="25dp"
+                        android:layout_below="@id/idIV5BlockCondition"
+                        android:text="Condition"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="8dp"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/nunito"
+                        app:fontFamily="@font/nunito"
+                        />
+
+                    <TextView
+                        android:id="@+id/idTV5BlockTemperature"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/idTV5BlockTitle"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginTop="-1dp"
+                        android:layout_toEndOf="@id/idIV5BlockCondition"
+                        android:gravity="center"
+                        android:text="23"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="35sp"
+                        android:fontFamily="@font/nunito"
+                        app:fontFamily="@font/nunito"/>
+
+                    <TextView
+                        android:id="@+id/idTV5BlockMinTemp"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/idTV5BlockTemperature"
+                        android:layout_centerInParent="true"
+                        android:text="min: 17"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/nunito_bold"
+                        app:fontFamily="@font/nunito_bold"/>
+
+                    <TextView
+                        android:id="@+id/idTV5BlockMaxTemp"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/idTV5BlockMinTemp"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/nunito_bold"
+                        android:text="max: 25"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        app:fontFamily="@font/nunito_bold"/>
+
+                    <ImageView
+                        android:id="@+id/idIV5BlockWindImageIcon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idTV5BlockTitle"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_toEndOf="@+id/idTV5BlockMaxTemp"
+                        android:src="@drawable/wind"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/idTV5BlockWindSpeed"
+                        android:layout_width="140dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idTV5BlockTitle"
+                        android:layout_marginTop="25dp"
+                        android:layout_toEndOf="@+id/idIV5BlockWindImageIcon"
+                        android:fontFamily="@font/nunito_bold"
+                        app:fontFamily="@font/nunito_bold"
+                        android:text="500 Km/h"
+                        android:layout_marginLeft="-4dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"/>
+
+                    <ImageView
+                        android:id="@+id/idIV5BlockChanceImageIcon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idIV5BlockWindImageIcon"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/idTV5BlockMaxTemp"
+                        android:src="@drawable/water_white"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/idTV5BlockRainChance"
+                        android:layout_width="140dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idTV5BlockWindSpeed"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/idIV5BlockWindImageIcon"
+                        android:fontFamily="@font/nunito_bold"
+                        app:fontFamily="@font/nunito_bold"
+                        android:text="17%"
+                        android:layout_marginLeft="-4dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/idRLSixth"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:layout_below="@+id/idLLFifth"
+                    android:layout_below="@+id/idRLFifth"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:background="@drawable/rectangle_block"
                     >
                     <TextView
+                        android:id="@+id/idTV6BlockTitle"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/idLLSeventh"
+                        android:layout_height="wrap_content"
+                        android:text="Tomorrow, %date"
+                        android:layout_marginTop="5dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        android:fontFamily="@font/nunito"/>
+                    <ImageView
+                        android:id="@+id/idIV6BlockCondition"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:layout_below="@id/idTV6BlockTitle"
+                        android:layout_marginLeft="15dp"/>
+                    <TextView
+                        android:id="@+id/idTV6BlockCondition"
+                        android:layout_width="85dp"
+                        android:layout_height="25dp"
+                        android:layout_below="@id/idIV6BlockCondition"
+                        android:text="Condition"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="8dp"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/nunito"
+                        app:fontFamily="@font/nunito"
+                        />
+
+                    <TextView
+                        android:id="@+id/idTV6BlockTemperature"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/idTV6BlockTitle"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginTop="-1dp"
+                        android:layout_toEndOf="@id/idIV6BlockCondition"
+                        android:gravity="center"
+                        android:text="23"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="35sp"
+                        android:fontFamily="@font/nunito"
+                        app:fontFamily="@font/nunito"/>
+
+                    <TextView
+                        android:id="@+id/idTV6BlockMinTemp"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/idTV6BlockTemperature"
+                        android:layout_centerInParent="true"
+                        android:text="min: 17"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/nunito_bold"
+                        app:fontFamily="@font/nunito_bold"/>
+
+                    <TextView
+                        android:id="@+id/idTV6BlockMaxTemp"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/idTV6BlockMinTemp"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/nunito_bold"
+                        android:text="max: 25"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        app:fontFamily="@font/nunito_bold"/>
+
+                    <ImageView
+                        android:id="@+id/idIV6BlockWindImageIcon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idTV6BlockTitle"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_toEndOf="@+id/idTV6BlockMaxTemp"
+                        android:src="@drawable/wind"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/idTV6BlockWindSpeed"
+                        android:layout_width="140dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idTV6BlockTitle"
+                        android:layout_marginTop="25dp"
+                        android:layout_toEndOf="@+id/idIV6BlockWindImageIcon"
+                        android:fontFamily="@font/nunito_bold"
+                        app:fontFamily="@font/nunito_bold"
+                        android:text="500 Km/h"
+                        android:layout_marginLeft="-4dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"/>
+
+                    <ImageView
+                        android:id="@+id/idIV6BlockChanceImageIcon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idIV6BlockWindImageIcon"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/idTV6BlockMaxTemp"
+                        android:src="@drawable/water_white"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/idTV6BlockRainChance"
+                        android:layout_width="140dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idTV6BlockWindSpeed"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/idIV6BlockWindImageIcon"
+                        android:fontFamily="@font/nunito_bold"
+                        app:fontFamily="@font/nunito_bold"
+                        android:text="17%"
+                        android:layout_marginLeft="-4dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/idRLSeventh"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:layout_below="@+id/idLLSixth"
+                    android:layout_below="@+id/idRLSixth"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:background="@drawable/rectangle_block"
                     >
                     <TextView
+                        android:id="@+id/idTV7BlockTitle"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/idLLEighth"
+                        android:layout_height="wrap_content"
+                        android:text="Tomorrow, %date"
+                        android:layout_marginTop="5dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        android:fontFamily="@font/nunito"/>
+                    <ImageView
+                        android:id="@+id/idIV7BlockCondition"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:layout_below="@id/idTV7BlockTitle"
+                        android:layout_marginLeft="15dp"/>
+                    <TextView
+                        android:id="@+id/idTV7BlockCondition"
+                        android:layout_width="85dp"
+                        android:layout_height="25dp"
+                        android:layout_below="@id/idIV7BlockCondition"
+                        android:text="Condition"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="8dp"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/nunito"
+                        app:fontFamily="@font/nunito"
+                        />
+
+                    <TextView
+                        android:id="@+id/idTV7BlockTemperature"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/idTV7BlockTitle"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginTop="-1dp"
+                        android:layout_toEndOf="@id/idIV7BlockCondition"
+                        android:gravity="center"
+                        android:text="23"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="35sp"
+                        android:fontFamily="@font/nunito"
+                        app:fontFamily="@font/nunito"/>
+
+                    <TextView
+                        android:id="@+id/idTV7BlockMinTemp"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/idTV7BlockTemperature"
+                        android:layout_centerInParent="true"
+                        android:text="min: 17"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/nunito_bold"
+                        app:fontFamily="@font/nunito_bold"/>
+
+                    <TextView
+                        android:id="@+id/idTV7BlockMaxTemp"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/idTV7BlockMinTemp"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/nunito_bold"
+                        android:text="max: 25"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        app:fontFamily="@font/nunito_bold"/>
+
+                    <ImageView
+                        android:id="@+id/idIV7BlockWindImageIcon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idTV7BlockTitle"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_toEndOf="@+id/idTV7BlockMaxTemp"
+                        android:src="@drawable/wind"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/idTV7BlockWindSpeed"
+                        android:layout_width="140dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idTV7BlockTitle"
+                        android:layout_marginTop="25dp"
+                        android:layout_toEndOf="@+id/idIV7BlockWindImageIcon"
+                        android:fontFamily="@font/nunito_bold"
+                        app:fontFamily="@font/nunito_bold"
+                        android:text="500 Km/h"
+                        android:layout_marginLeft="-4dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"/>
+
+                    <ImageView
+                        android:id="@+id/idIV7BlockChanceImageIcon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idIV7BlockWindImageIcon"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/idTV7BlockMaxTemp"
+                        android:src="@drawable/water_white"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/idTV7BlockRainChance"
+                        android:layout_width="140dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idTV7BlockWindSpeed"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/idIV7BlockWindImageIcon"
+                        android:fontFamily="@font/nunito_bold"
+                        app:fontFamily="@font/nunito_bold"
+                        android:text="17%"
+                        android:layout_marginLeft="-4dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/idRLEighth"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:layout_below="@+id/idLLSeventh"
+                    android:layout_below="@+id/idRLSeventh"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:background="@drawable/rectangle_block"
                     >
                     <TextView
+                        android:id="@+id/idTV8BlockTitle"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/idLLNineth"
+                        android:layout_height="wrap_content"
+                        android:text="Tomorrow, %date"
+                        android:layout_marginTop="5dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        android:fontFamily="@font/nunito"/>
+                    <ImageView
+                        android:id="@+id/idIV8BlockCondition"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:layout_below="@id/idTV8BlockTitle"
+                        android:layout_marginLeft="15dp"/>
+                    <TextView
+                        android:id="@+id/idTV8BlockCondition"
+                        android:layout_width="85dp"
+                        android:layout_height="25dp"
+                        android:layout_below="@id/idIV8BlockCondition"
+                        android:text="Condition"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="8dp"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/nunito"
+                        app:fontFamily="@font/nunito"
+                        />
+
+                    <TextView
+                        android:id="@+id/idTV8BlockTemperature"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/idTV8BlockTitle"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginTop="-1dp"
+                        android:layout_toEndOf="@id/idIV8BlockCondition"
+                        android:gravity="center"
+                        android:text="23"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="35sp"
+                        android:fontFamily="@font/nunito"
+                        app:fontFamily="@font/nunito"/>
+
+                    <TextView
+                        android:id="@+id/idTV8BlockMinTemp"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/idTV8BlockTemperature"
+                        android:layout_centerInParent="true"
+                        android:text="min: 17"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/nunito_bold"
+                        app:fontFamily="@font/nunito_bold"/>
+
+                    <TextView
+                        android:id="@+id/idTV8BlockMaxTemp"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/idTV8BlockMinTemp"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/nunito_bold"
+                        android:text="max: 25"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        app:fontFamily="@font/nunito_bold"/>
+
+                    <ImageView
+                        android:id="@+id/idIV8BlockWindImageIcon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idTV8BlockTitle"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_toEndOf="@+id/idTV8BlockMaxTemp"
+                        android:src="@drawable/wind"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/idTV8BlockWindSpeed"
+                        android:layout_width="140dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idTV8BlockTitle"
+                        android:layout_marginTop="25dp"
+                        android:layout_toEndOf="@+id/idIV8BlockWindImageIcon"
+                        android:fontFamily="@font/nunito_bold"
+                        app:fontFamily="@font/nunito_bold"
+                        android:text="500 Km/h"
+                        android:layout_marginLeft="-4dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"/>
+
+                    <ImageView
+                        android:id="@+id/idIV8BlockChanceImageIcon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idIV8BlockWindImageIcon"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/idTV8BlockMaxTemp"
+                        android:src="@drawable/water_white"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/idTV8BlockRainChance"
+                        android:layout_width="140dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idTV8BlockWindSpeed"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/idIV8BlockWindImageIcon"
+                        android:fontFamily="@font/nunito_bold"
+                        app:fontFamily="@font/nunito_bold"
+                        android:text="17%"
+                        android:layout_marginLeft="-4dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/idRLNineth"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:layout_below="@+id/idLLEighth"
+                    android:layout_below="@+id/idRLEighth"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:background="@drawable/rectangle_block"
                     >
                     <TextView
+                        android:id="@+id/idTV9BlockTitle"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/idLLTenth"
+                        android:layout_height="wrap_content"
+                        android:text="Tomorrow, %date"
+                        android:layout_marginTop="5dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        android:fontFamily="@font/nunito"/>
+                    <ImageView
+                        android:id="@+id/idIV9BlockCondition"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:layout_below="@id/idTV9BlockTitle"
+                        android:layout_marginLeft="15dp"/>
+                    <TextView
+                        android:id="@+id/idTV9BlockCondition"
+                        android:layout_width="85dp"
+                        android:layout_height="25dp"
+                        android:layout_below="@id/idIV9BlockCondition"
+                        android:text="Condition"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="8dp"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/nunito"
+                        app:fontFamily="@font/nunito"
+                        />
+
+                    <TextView
+                        android:id="@+id/idTV9BlockTemperature"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/idTV9BlockTitle"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginTop="-1dp"
+                        android:layout_toEndOf="@id/idIV9BlockCondition"
+                        android:gravity="center"
+                        android:text="23"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="35sp"
+                        android:fontFamily="@font/nunito"
+                        app:fontFamily="@font/nunito"/>
+
+                    <TextView
+                        android:id="@+id/idTV9BlockMinTemp"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/idTV9BlockTemperature"
+                        android:layout_centerInParent="true"
+                        android:text="min: 17"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/nunito_bold"
+                        app:fontFamily="@font/nunito_bold"/>
+
+                    <TextView
+                        android:id="@+id/idTV9BlockMaxTemp"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/idTV9BlockMinTemp"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/nunito_bold"
+                        android:text="max: 25"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        app:fontFamily="@font/nunito_bold"/>
+
+                    <ImageView
+                        android:id="@+id/idIV9BlockWindImageIcon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idTV9BlockTitle"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_toEndOf="@+id/idTV9BlockMaxTemp"
+                        android:src="@drawable/wind"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/idTV9BlockWindSpeed"
+                        android:layout_width="140dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idTV9BlockTitle"
+                        android:layout_marginTop="25dp"
+                        android:layout_toEndOf="@+id/idIV9BlockWindImageIcon"
+                        android:fontFamily="@font/nunito_bold"
+                        app:fontFamily="@font/nunito_bold"
+                        android:text="500 Km/h"
+                        android:layout_marginLeft="-4dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"/>
+
+                    <ImageView
+                        android:id="@+id/idIV9BlockChanceImageIcon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idIV9BlockWindImageIcon"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/idTV9BlockMaxTemp"
+                        android:src="@drawable/water_white"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/idTV9BlockRainChance"
+                        android:layout_width="140dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idTV9BlockWindSpeed"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/idIV9BlockWindImageIcon"
+                        android:fontFamily="@font/nunito_bold"
+                        app:fontFamily="@font/nunito_bold"
+                        android:text="17%"
+                        android:layout_marginLeft="-4dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/idRLTenth"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:layout_below="@+id/idLLNineth"
+                    android:layout_below="@+id/idRLNineth"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:background="@drawable/rectangle_block"
                     >
                     <TextView
+                        android:id="@+id/idTV10BlockTitle"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
-                </LinearLayout>
+                        android:layout_height="wrap_content"
+                        android:text="Tomorrow, %date"
+                        android:layout_marginTop="5dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        android:fontFamily="@font/nunito"/>
+                    <ImageView
+                        android:id="@+id/idIV10BlockCondition"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:layout_below="@id/idTV10BlockTitle"
+                        android:layout_marginLeft="15dp"/>
+                    <TextView
+                        android:id="@+id/idTV10BlockCondition"
+                        android:layout_width="85dp"
+                        android:layout_height="25dp"
+                        android:layout_below="@id/idIV10BlockCondition"
+                        android:text="Condition"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="8dp"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/nunito"
+                        app:fontFamily="@font/nunito"
+                        />
+
+                    <TextView
+                        android:id="@+id/idTV10BlockTemperature"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/idTV10BlockTitle"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginTop="-1dp"
+                        android:layout_toEndOf="@id/idIV10BlockCondition"
+                        android:gravity="center"
+                        android:text="23"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="35sp"
+                        android:fontFamily="@font/nunito"
+                        app:fontFamily="@font/nunito"/>
+
+                    <TextView
+                        android:id="@+id/idTV10BlockMinTemp"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/idTV10BlockTemperature"
+                        android:layout_centerInParent="true"
+                        android:text="min: 17"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/nunito_bold"
+                        app:fontFamily="@font/nunito_bold"/>
+
+                    <TextView
+                        android:id="@+id/idTV10BlockMaxTemp"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/idTV10BlockMinTemp"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/nunito_bold"
+                        android:text="max: 25"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        app:fontFamily="@font/nunito_bold"/>
+
+                    <ImageView
+                        android:id="@+id/idIV10BlockWindImageIcon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idTV10BlockTitle"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_toEndOf="@+id/idTV10BlockMaxTemp"
+                        android:src="@drawable/wind"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/idTV10BlockWindSpeed"
+                        android:layout_width="140dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idTV10BlockTitle"
+                        android:layout_marginTop="25dp"
+                        android:layout_toEndOf="@+id/idIV10BlockWindImageIcon"
+                        android:fontFamily="@font/nunito_bold"
+                        app:fontFamily="@font/nunito_bold"
+                        android:text="500 Km/h"
+                        android:layout_marginLeft="-4dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"/>
+
+                    <ImageView
+                        android:id="@+id/idIV10BlockChanceImageIcon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idIV10BlockWindImageIcon"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/idTV10BlockMaxTemp"
+                        android:src="@drawable/water_white"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/idTV10BlockRainChance"
+                        android:layout_width="140dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/idTV10BlockWindSpeed"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/idIV10BlockWindImageIcon"
+                        android:fontFamily="@font/nunito_bold"
+                        app:fontFamily="@font/nunito_bold"
+                        android:text="17%"
+                        android:layout_marginLeft="-4dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"/>
+                </RelativeLayout>
 
             </RelativeLayout>
         </RelativeLayout>

@@ -20,21 +20,24 @@ import com.example.weatherapp.weather.WeatherMaster;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private RelativeLayout RLHome, RLGeneralBackG;
-    private ImageView IVBack, IVCurCondition;
+    private ImageView IVCurCondition, IVBlockCondition;
     private TextInputEditText EDTCity;
     private TextInputLayout hint;
-    private TextView TVCurTemp, TVCondition, TVFeelsLike, TVWindSpeed, TVPressure;
+    private TextView TVCurTemp, TVCondition, TVFeelsLike, TVWindSpeed, TVPressure, TVBlockTitle,
+    TVBlockCondition;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_new_main);
-
+        {
        RLHome = findViewById(R.id.idRLHome);
-       IVBack = findViewById(R.id.idIVBack);
        EDTCity = findViewById(R.id.idEDTCity);
        hint = findViewById(R.id.idTILCity);
        RLGeneralBackG = findViewById(R.id.idRLGeneralBack);
@@ -44,9 +47,12 @@ public class MainActivity extends AppCompatActivity {
        TVFeelsLike = findViewById(R.id.idTVFeelsLike);
        TVWindSpeed = findViewById(R.id.idTVWindSpeed);
        TVPressure = findViewById(R.id.idTVPressure);
+       TVBlockTitle = findViewById(R.id.idTVTomorrowTitle);
+       TVBlockCondition = findViewById(R.id.idTVTomorrowCondition);
+       IVBlockCondition = findViewById(R.id.idIVTomorrowCondition);
+        }
 
        EDTCity.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
-
        EDTCity.setOnKeyListener(new View.OnKeyListener()
         {
             public boolean onKey(View v, int keyCode, KeyEvent event)
@@ -58,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                         case KeyEvent.KEYCODE_DPAD_CENTER:
                         case KeyEvent.KEYCODE_ENTER:
                             WeatherMaster.setCurrentWeather(EDTCity.getText().toString(), TVCurTemp, TVCondition, RLGeneralBackG, IVCurCondition, TVFeelsLike, TVWindSpeed, TVPressure);
+                            //WeatherMaster.setForecastWeather(EDTCity.getText().toString(), 1, TVBlockTitle, TVBlockCondition, block_avgTemp, block_minTemp, block_maxTemp, block_windSpeed, block_rainChance, IVBlockCondition);
                             hint.setHint("");
                             return true;
                         default:
