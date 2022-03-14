@@ -93,7 +93,7 @@ public class WeatherMaster {
                     MinTemp.get(i).setText(dayWeather.getMintemp_c() + "℃");
                     MaxTemp.get(i).setText(dayWeather.getMaxtemp_c() + "℃");
                     WindSpeed.get(i).setText(dayWeather.getMaxwind_kph() + " Kp/h");
-                    ChanceOfRain.get(i).setText("" + dayWeather.getDaily_chance_of_rain());
+                    ChanceOfRain.get(i).setText("" + dayWeather.getDaily_chance_of_rain() + "%");
                     ImageHandler.setCondition(condition.getCode(), IconCondition.get(i));
                 }
 
