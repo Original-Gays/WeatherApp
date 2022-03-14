@@ -33,7 +33,6 @@
                         android:layout_margin="5dp"
                         android:layout_weight="4.5"
                         android:background="@android:color/transparent"
-                        android:hint="CITY"
                         android:padding="15dp"
                         android:textAlignment="center"
                         android:textColorHint="@color/white">
@@ -91,12 +90,12 @@
                         android:layout_width="190dp"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/idTVCurTemp"
+                        android:layout_marginLeft="10dp"
                         android:fontFamily="@font/nunito"
                         android:text="Condition"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="33sp"
-                        android:layout_marginLeft="10dp"/>
+                        android:textSize="25sp" />
 
                     <TextView
                         android:id="@+id/idTVFeelsLike"
