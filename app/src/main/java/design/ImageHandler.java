@@ -16,7 +16,7 @@ public class ImageHandler {
     protected static int[][] conditions = {
             clear_condition, cloudy_condition, rainy_condition, snowy_condition, thunder_condition};
 
-    public static void setBackGround(int code, RelativeLayout layout, int is_day, ImageView curCondition)
+    public static synchronized void setBackGroundAndCondition(int code, RelativeLayout layout, int is_day, ImageView curCondition)
     {
         for (int i = 0; i < 5; i++)
         {
@@ -58,7 +58,42 @@ public class ImageHandler {
         }
     }
 
-    public static void setNonCoreCondition(int code, ImageView nonCoreCondition)
+    public static synchronized void setBackGround(int code, RelativeLayout layout, int is_day)
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < conditions[i].length; j++)
+            {
+                if (code == conditions[i][j])
+                {
+                    switch (i)
+                    {
+                        case 0: if (is_day == 1)
+                        {
+                            layout.setBackgroundResource(R.drawable.sunny_blur);
+                            break;
+                        } else
+                        {
+                            layout.setBackgroundResource(R.drawable.clear_night);
+                            break;
+                        }
+                        case 1: layout.setBackgroundResource(R.drawable.cloudy_overcast_blur);
+                            break;
+                        case 2: layout.setBackgroundResource(R.drawable.rainy_blur);
+                            break;
+                        case 3: layout.setBackgroundResource(R.drawable.snowy_sleet_blur);
+                            break;
+                        case 4: layout.setBackgroundResource(R.drawable.thunder_blur);
+                            break;
+                        default: layout.setBackgroundResource(R.drawable.lowbgdefblur);
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
+    public static void setCondition(int code, ImageView nonCoreCondition)
     {
         for (int i = 0; i < 5; i++)
         {

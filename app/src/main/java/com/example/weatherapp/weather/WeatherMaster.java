@@ -3,6 +3,11 @@ package com.example.weatherapp.weather;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.example.weatherapp.MainActivity;
+
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -12,7 +17,8 @@ import design.ImageHandler;
 
 
 public class WeatherMaster {
-    private static String API = "248a249476cd458ab38140300221902";
+    private static final String API = "248a249476cd458ab38140300221902";
+    private static final int DAYS = 3;
 
     private static Call<CurrentWeather> getCurrentWeather(String city) {
         Retrofit retrofit = new Retrofit.Builder().
@@ -25,7 +31,7 @@ public class WeatherMaster {
         return currentWeatherAPI.getCurrentWeather(WeatherMaster.API, city);
     }
 
-    public static Call<ForecastWeather> getForecastWeather(String city, int days) {
+    public static Call<ForecastWeather> getForecastWeather(String city) {
         Retrofit retrofit = new Retrofit.Builder().
                 baseUrl("https://api.weatherapi.com/").
                 addConverterFactory(GsonConverterFactory.create()).
@@ -33,7 +39,7 @@ public class WeatherMaster {
 
         ForecastWeatherAPI forecastWeatherAPI = retrofit.create(ForecastWeatherAPI.class);
 
-        return forecastWeatherAPI.getForecastWeather(WeatherMaster.API, city, days);
+        return forecastWeatherAPI.getForecastWeather(WeatherMaster.API, city, DAYS, "no", "no");
     }
 
     public static void setCurrentWeather(String city, TextView currentTemp, TextView currentCond, RelativeLayout layoutBG, ImageView curConditionimage, TextView feelsLike,TextView windSpeed, TextView curPressure) {
@@ -45,7 +51,17 @@ public class WeatherMaster {
                     return;
                 }
                 CurrentWeather currentWeather = response.body();
-                WeatherMaster.currentWeather(currentWeather, currentTemp, currentCond, layoutBG, curConditionimage, feelsLike, windSpeed, curPressure);
+                Location location = currentWeather.getLocation();
+                Current current = currentWeather.getCurrent();
+
+                int is_day = current.isIs_day();
+                int condition_code = current.getCondition().getCode();
+                ImageHandler.setBackGroundAndCondition(condition_code, layoutBG, is_day, curConditionimage);
+                currentTemp.setText(current.getTemp_c() + "℃");
+                curPressure.setText(current.getPressure_mb() + " Mb");
+                currentCond.setText(current.getCondition().getText());
+                windSpeed.setText(current.getWind_kph()+ " Kp/h");
+                feelsLike.setText("Feels like " + current.getFeelslike_c() +"℃");
             }
             @Override
             public void onFailure(Call<CurrentWeather> call, Throwable t) {
@@ -54,8 +70,8 @@ public class WeatherMaster {
         });
     }
 
-    public static void setForecastWeather(String city, int days, TextView Title, TextView Condition, TextView Temperature, TextView MinTemp, TextView MaxTemp, TextView WindSpeed, TextView ChanceOfRain, ImageView IconCondition) {
-        Call<ForecastWeather> call = getForecastWeather(city, days);
+    public static void setForecastWeather(String city, List<TextView> Title, List<TextView> ConditionPlace, List<TextView> Temperature, List<TextView> MinTemp, List<TextView> MaxTemp, List<TextView> WindSpeed, List<TextView> ChanceOfRain, List<ImageView> IconCondition) {
+        Call<ForecastWeather> call = getForecastWeather(city);
         call.enqueue(new Callback<ForecastWeather>() {
             @Override
             public void onResponse(Call<ForecastWeather> call, Response<ForecastWeather> response) {
@@ -63,7 +79,24 @@ public class WeatherMaster {
                     return;
                 }
                 ForecastWeather forecastWeather = response.body();
-                WeatherMaster.forecastWeather(forecastWeather, Title, Condition, Temperature, MinTemp, MaxTemp, WindSpeed, ChanceOfRain, IconCondition);
+                Forecast forecast = forecastWeather.getForecast();
+                MainActivity.setForecastWeather(forecastWeather);
+                List<Day> days = forecast.getForecastday();
+                for (int i = 0; i < DAYS; i++) {
+                    Day day = days.get(i);
+                    DayWeather dayWeather = day.getDay();
+                    Condition condition = dayWeather.getCondition();
+
+                    Title.get(i).setText(day.getDate());
+                    ConditionPlace.get(i).setText(condition.getText());
+                    Temperature.get(i).setText(dayWeather.getAvgtemp_c() + "℃");
+                    MinTemp.get(i).setText(dayWeather.getMintemp_c() + "℃");
+                    MaxTemp.get(i).setText(dayWeather.getMaxtemp_c() + "℃");
+                    WindSpeed.get(i).setText(dayWeather.getMaxwind_kph() + " Kp/h");
+                    ChanceOfRain.get(i).setText("" + dayWeather.getDaily_chance_of_rain());
+                    ImageHandler.setCondition(condition.getCode(), IconCondition.get(i));
+                }
+
             }
 
             @Override
@@ -73,45 +106,6 @@ public class WeatherMaster {
         });
     }
 
-    public static void forecastWeather(ForecastWeather forecastWeather, TextView title, TextView condition, TextView temperature, TextView mintemp, TextView maxtemp, TextView windspeed, TextView chanceofrain, ImageView icon)
-    {
-        // block parser
-    }
 
-    public static void currentWeather(CurrentWeather currentWeather, TextView curTemp, TextView curCond, RelativeLayout bg, ImageView condIV, TextView feelsLike, TextView windSpeed, TextView curPressure)
-    {
 
-        Location location = currentWeather.getLocation();
-        Current current = currentWeather.getCurrent();
-
-        int is_day = current.isIs_day();
-        int condition_code = current.getCondition().getCode();
-        ImageHandler.setBackGround(condition_code, bg, is_day, condIV);
-        curTemp.setText(current.getTemp_c() + "℃");
-        curPressure.setText(current.getPressure_mb() + " Mb");
-        curCond.setText(current.getCondition().getText());
-        windSpeed.setText(current.getWind_kph()+ " Kp/h");
-        feelsLike.setText("Feels like " + current.getFeelslike_c() +"℃");
-    }
-
-    public static void testCurrentWeather(CurrentWeather currentWeather, TextView where) {
-        Location location = currentWeather.getLocation();
-        Current current = currentWeather.getCurrent();
-        String res = location.getName() + ", " + location.getRegion() + ", " + location.getCountry() + "\n" +
-                location.getLocaltime() + "\n" +
-                "Temperature: " + current.getTemp_c() + ", " +
-                current.getCondition().getText() + "\n" +
-                "Feels like: " + current.getFeelslike_c() + "\n" +
-                "Wind: " + current.getWind_kph();
-        where.setText(res);
-    }
-
-    public static void testForecastWeather(ForecastWeather forecastWeather, TextView where) {
-        Forecast forecast = forecastWeather.getForecast();
-        String res = "";
-        for (Day day: forecast.getForecastday()) {
-            res += day.getDay().getAvgtemp_c() + "\n";
-        }
-        where.setText(res);
-    }
 }
