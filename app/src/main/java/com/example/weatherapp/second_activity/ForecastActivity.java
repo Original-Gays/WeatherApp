@@ -35,7 +35,6 @@ public class ForecastActivity extends AppCompatActivity {
     private Day day;
     private DayWeather dayWeather;
     private Condition condition;
-    private Current current;
 
     private RelativeLayout GeneralBack;
     private int whichDay;
@@ -70,7 +69,6 @@ public class ForecastActivity extends AppCompatActivity {
         forecastWeather = MainActivity.getForecastWeather();
         location = forecastWeather.getLocation();
         forecast = forecastWeather.getForecast();
-        current = forecastWeather.getCurrent();
         day = forecast.getForecastday().get(whichDay);
         dayWeather = day.getDay();
         Date = day.getDate();
@@ -121,8 +119,8 @@ public class ForecastActivity extends AppCompatActivity {
                 break;
         }
 
-        ImageHandler.setBackGround(condition.getCode(), GeneralBack, current.isIs_day());
-        TVTemp.setText(current.getTemp_c() + "°");
+        ImageHandler.setBackGround(condition.getCode(), GeneralBack, (whichDay == 0 ? forecastWeather.getCurrent().isIs_day() : 1));
+        TVTemp.setText(dayWeather.getAvgtemp_c() + "°");
         TVCondition.setText(condition.getText());
         TVMaxMinTemp.setText("↑" + dayWeather.getMaxtemp_c() + "°   ↓" + dayWeather.getMintemp_c() + "°");
 

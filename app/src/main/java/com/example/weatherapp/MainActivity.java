@@ -164,5 +164,23 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Second.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ForecastActivity.class);
+                intent.putExtra("Day", 1);
+                startActivity(intent);
+            }
+        });
+
+        Third.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ForecastActivity.class);
+                intent.putExtra("Day", 2);
+                startActivity(intent);
+            }
+        });
     }
 }
