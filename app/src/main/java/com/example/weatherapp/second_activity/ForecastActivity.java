@@ -1,6 +1,7 @@
 package com.example.weatherapp.second_activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -20,6 +21,16 @@ import com.example.weatherapp.weather.Forecast;
 import com.example.weatherapp.weather.ForecastWeather;
 import com.example.weatherapp.weather.Hour;
 import com.example.weatherapp.weather.Location;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import org.w3c.dom.Text;
 
@@ -35,6 +46,7 @@ public class ForecastActivity extends AppCompatActivity {
     private Day day;
     private DayWeather dayWeather;
     private Condition condition;
+    private List<Hour> hours;
 
     private RelativeLayout GeneralBack;
     private int whichDay;
@@ -66,6 +78,7 @@ public class ForecastActivity extends AppCompatActivity {
         TVCondition = findViewById(R.id.idCond);
         TVMaxMinTemp = findViewById(R.id.idMaxMinTemp);
 
+
         forecastWeather = MainActivity.getForecastWeather();
         location = forecastWeather.getLocation();
         forecast = forecastWeather.getForecast();
@@ -73,6 +86,7 @@ public class ForecastActivity extends AppCompatActivity {
         dayWeather = day.getDay();
         Date = day.getDate();
         condition = dayWeather.getCondition();
+        hours = day.getHour();
 
         hourItems = new ArrayList<>();
         recyclerView = findViewById(R.id.recycleView);
@@ -126,14 +140,10 @@ public class ForecastActivity extends AppCompatActivity {
 
 
         fillHours();
-        recycleradapter = new recyclerAdapter(hourItems);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(recycleradapter);
+        makegraph();
     }
 
     private void fillHours() {
-        List<Hour> hours = day.getHour();
         for (int i = 1; i <= 12; i++) {
             hourItems.add(new HourItem(i + "AM", hours.get(i).getCondition().getCode(), hours.get(i).getTemp_c() + "°"));
         }
@@ -141,5 +151,40 @@ public class ForecastActivity extends AppCompatActivity {
             hourItems.add(new HourItem(i + "PM", hours.get(i).getCondition().getCode(), hours.get(i).getTemp_c() + "°"));
         }
         hourItems.add(new HourItem(24 + "AM", hours.get(0).getCondition().getCode(), hours.get(0).getTemp_c() + "°"));
+        recycleradapter = new recyclerAdapter(hourItems);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(recycleradapter);
+    }
+
+    private void makegraph() {
+        ArrayList<Entry> temperature = new ArrayList<>();
+        LineChart lineChart = findViewById(R.id.idLCGraph);
+
+        for (int i = 0; i < 24; i++) {
+            temperature.add(new Entry(i, (float)hours.get(i).getTemp_c()));
+        }
+
+        LineDataSet lineDataSet = new LineDataSet(temperature, "Temperature");
+
+        lineDataSet.setColor(Color.WHITE);
+        lineDataSet.setLineWidth(3f);
+        lineDataSet.setDrawValues(false);
+        lineDataSet.setDrawCircles(false);
+        lineDataSet.setMode(LineDataSet.Mode.LINEAR);
+        lineDataSet.setDrawFilled(false);
+
+        LineData lineData = new LineData(lineDataSet);
+        lineData.setDrawValues(true);
+        lineData.setValueTextSize(16f);
+        lineData.setValueTextColor(Color.WHITE);
+
+        lineChart.setData(lineData);
+
+        lineChart.getLegend().setEnabled(false);
+        lineChart.getXAxis().setEnabled(false);
+        lineChart.getAxisLeft().setEnabled(false);
+        lineChart.getAxisRight().setEnabled(false);
+
     }
 }

@@ -107,6 +107,25 @@
                     tools:listitem="@layout/hour_item" />
             </RelativeLayout>
 
+            <RelativeLayout
+                android:id="@+id/idRLGraph"
+                android:layout_width="match_parent"
+                android:layout_height="600dp"
+                android:layout_below="@id/idRLWeather"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="7dp"
+                android:background="@drawable/rectangle_block">
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/idLCGraph"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+
+            </RelativeLayout>
+
         </RelativeLayout>
 
     </ScrollView>

@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
     private List<TextView> ChancesOfRain;
     private List<ImageView> IconsCondition;
 
+
     private RelativeLayout First;
     private RelativeLayout Second;
     private RelativeLayout Third;
@@ -147,11 +148,11 @@ public class MainActivity extends AppCompatActivity {
         try {
             addresses = geocoder.getFromLocation(lat, lon, 1);
             city = addresses.get(0).getLocality();
-            WeatherMaster.setCurrentWeather(city, TVCurTemp, TVCondition, RLGeneralBackG, IVCurCondition, TVFeelsLike, TVWindSpeed, TVPressure);
             try {
                 Thread.sleep(100);
             } catch (InterruptedException ex) { }
 
+            WeatherMaster.setCurrentWeather(city, TVCurTemp, TVCondition, RLGeneralBackG, IVCurCondition, TVFeelsLike, TVWindSpeed, TVPressure);
             WeatherMaster.setForecastWeather(city, Titles, ConditionPlaces, Temperatures, MinTemperatures, MaxTemperatures, WindSpeeds, ChancesOfRain, IconsCondition);
             hint.setHint(city.toUpperCase(Locale.ENGLISH));
         } catch (IOException e) {
